@@ -11,7 +11,7 @@ type User = {
     id: string;
   };
   data: {
-    stripe_costumer_id: string;
+    stripe_customer_id: string;
   };
 };
 
@@ -28,10 +28,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       )
     );
 
-    let customerId = user.data.stripe_costumer_id;
+    let customerId = user.data.stripe_customer_id;
 
     if (!customerId) {
-      const stripeCostumer = await stripe.customers.create({
+      const stripeCustomer = await stripe.customers.create({
         email: session.user.email,
         // metadata
       });
@@ -39,12 +39,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       await fauna.query(
         query.Update(query.Ref(query.Collection('users'), user.ref.id), {
           data: {
-            stripe_costumer_id: stripeCostumer.id,
+            stripe_customer_id: stripeCustomer.id,
           },
         })
       );
 
-      customerId = stripeCostumer.id;
+      customerId = stripeCustomer.id;
     }
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
