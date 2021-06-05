@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Link from 'next/link';
+
 import { GetStaticProps } from 'next';
 
 import Prismic from '@prismicio/client';
@@ -32,13 +34,15 @@ export default function Posts({ posts }: PostsProps) {
             const { slug, title, excerpt, updatedAt } = post;
 
             return (
-              <a key={slug} href='#'>
-                <time>{updatedAt}</time>
+              <Link href={`/posts/${slug}`}>
+                <a key={slug} href='#'>
+                  <time>{updatedAt}</time>
 
-                <strong>{title}</strong>
+                  <strong>{title}</strong>
 
-                <p>{excerpt}</p>
-              </a>
+                  <p>{excerpt}</p>
+                </a>
+              </Link>
             );
           })}
         </div>
