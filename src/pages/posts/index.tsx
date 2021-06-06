@@ -34,8 +34,8 @@ export default function Posts({ posts }: PostsProps) {
             const { slug, title, excerpt, updatedAt } = post;
 
             return (
-              <Link href={`/posts/${slug}`}>
-                <a key={slug} href='#'>
+              <Link key={slug} href={`/posts/${slug}`}>
+                <a>
                   <time>{updatedAt}</time>
 
                   <strong>{title}</strong>
