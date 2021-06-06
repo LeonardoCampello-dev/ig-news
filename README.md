@@ -1,12 +1,12 @@
 <h1 align="center">
     <img 
-        src="./.github/home.png"
-        width="700px"
+        src="./public/images/avatar.svg"
+        width="200px"
         alt="Ig.news"
     >
 </h1>
 
-<h1 align="center">[🚧 WIP] Ig.news ☕</h1>
+<h1 align="center"> Ig.news ☕ [🚧 WIP]</h1>
 
 <h4 align="center">
 
@@ -18,6 +18,7 @@
 
 - [👨‍🏫 About](#-about)
 - [🚀 Technology](#-technology)
+  - [📚 Libs](#-libs)
   - [🔌 APIs](#-apis)
 - [🎬 Demonstration](#-demonstration)
 - [☕ Prerequisites](#-prerequisites)
@@ -38,6 +39,11 @@
 - [x] [Next.js](https://nextjs.org/)
 - [x] [Sass](https://sass-lang.com/)
 - [x] [FaunaDB](https://fauna.com/)
+- [x] [Prismic](https://prismic.io/)
+
+### 📚 Libs
+
+- [NextAuth.js](https://next-auth.js.org/)
 
 ### 🔌 APIs
 
@@ -45,7 +51,17 @@
 
 ## 🎬 Demonstration
 
-🚧 WIP
+<p align='center'>
+  <img width='700' src='.github/home.png'>
+</p>
+
+<p align='center'>
+  <img width='700' src='.github/posts.png'>
+</p>
+
+<p align='center'>
+  <img width='700' src='.github/post.png'>
+</p>
 
 <!-- > To see more screenshots or videos, click [HERE.]() -->
 
