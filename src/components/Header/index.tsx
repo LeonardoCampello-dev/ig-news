@@ -1,10 +1,8 @@
-import { SignInButton } from '../SignInButton';
-
 import { ActiveLink } from '../ActiveLink/index';
-
+import { SignInButton } from '../SignInButton';
 import styles from './styles.module.scss';
 
-export function Header() {
+export function Header(): JSX.Element {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>

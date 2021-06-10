@@ -6,9 +6,9 @@ jest.mock('next/router', () => {
   return {
     useRouter() {
       return {
-        asPath: '/',
+        asPath: '/'
       };
-    },
+    }
   };
 });
 
@@ -16,7 +16,7 @@ jest.mock('next-auth/client', () => {
   return {
     useSession() {
       return [null, false];
-    },
+    }
   };
 });
 

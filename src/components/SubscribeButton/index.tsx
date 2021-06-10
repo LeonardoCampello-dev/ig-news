@@ -1,12 +1,11 @@
-import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
+import { signIn, useSession } from 'next-auth/client';
 
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
-
 import styles from './styles.module.scss';
 
-export function SubscribeButton() {
+export function SubscribeButton(): JSX.Element {
   const [session] = useSession();
   const router = useRouter();
 
@@ -37,11 +36,7 @@ export function SubscribeButton() {
   }
 
   return (
-    <button
-      type='button'
-      className={styles.subscribeButton}
-      onClick={handleSubscribe}
-    >
+    <button type='button' className={styles.subscribeButton} onClick={handleSubscribe}>
       Subscribe now
     </button>
   );

@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
-
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
-
 import Head from 'next/head';
 import Link from 'next/link';
-
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 import { RichText } from 'prismic-dom';
+import { useEffect } from 'react';
 
 import { getPrismicClient } from '../../../services/prismic';
-
 import styles from '../post.module.scss';
 
 interface PostPreviewProps {
@@ -22,7 +18,7 @@ interface PostPreviewProps {
   };
 }
 
-export default function PostPreview({ post }: PostPreviewProps) {
+export default function PostPreview({ post }: PostPreviewProps): JSX.Element {
   const [session] = useSession();
   const router = useRouter();
 
@@ -54,7 +50,12 @@ export default function PostPreview({ post }: PostPreviewProps) {
           <div className={styles.continueReading}>
             Wanna continue reading?
             <Link href='/'>
-              <a>Subscribe now 🤗</a>
+              <a>
+                Subscribe now{' '}
+                <span role='img' aria-label='hug'>
+                  🤗
+                </span>
+              </a>
             </Link>
           </div>
         </article>
@@ -68,7 +69,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     // only useful for building
     paths: [],
     // true | false | blocking
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 };
 
@@ -89,14 +90,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     updatedAt: new Date(last_publication_date).toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',
-      year: 'numeric',
-    }),
+      year: 'numeric'
+    })
   };
 
   return {
     props: {
-      post,
+      post
     },
-    redirect: 60 * 30, // thirty minutes
+    redirect: 60 * 30 // thirty minutes
   };
 };

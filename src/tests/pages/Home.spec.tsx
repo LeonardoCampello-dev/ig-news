@@ -6,12 +6,12 @@ jest.mock('next-auth/client', () => {
   return {
     useSession() {
       return [null, false];
-    },
+    }
   };
 });
 
 const HomeFakeProps: HomeProps = {
-  product: { priceId: 'price-id', amount: 'R$10,00' },
+  product: { priceId: 'price-id', amount: 'R$10,00' }
 };
 
 describe('🧪 Dado que estou na página Home', () => {

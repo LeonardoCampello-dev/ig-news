@@ -11,9 +11,7 @@ export async function saveSubscription(
   const userRef = await fauna.query(
     query.Select(
       'ref',
-      query.Get(
-        query.Match(query.Index('user_by_stripe_customer_id'), customerId)
-      )
+      query.Get(query.Match(query.Index('user_by_stripe_customer_id'), customerId))
     )
   );
 
@@ -25,13 +23,13 @@ export async function saveSubscription(
     id: id,
     user: userRef,
     status: status,
-    priceId: items.data[0].price.id,
+    priceId: items.data[0].price.id
   };
 
   if (createAction) {
     await fauna.query(
       query.Create(query.Collection('subscriptions'), {
-        data: subscriptionData,
+        data: subscriptionData
       })
     );
   } else {
@@ -39,9 +37,7 @@ export async function saveSubscription(
       query.Replace(
         query.Select(
           'ref',
-          query.Get(
-            query.Match(query.Index('subscription_by_id'), subscriptionId)
-          )
+          query.Get(query.Match(query.Index('subscription_by_id'), subscriptionId))
         ),
         { data: subscriptionData }
       )

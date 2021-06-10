@@ -1,11 +1,8 @@
 import { GetStaticProps } from 'next';
-
 import Head from 'next/head';
 
-import { stripe } from '../services/stripe';
-
 import { SubscribeButton } from '../components/SubscribeButton';
-
+import { stripe } from '../services/stripe';
 import styles from './home.module.scss';
 
 export interface HomeProps {
@@ -15,7 +12,7 @@ export interface HomeProps {
   };
 }
 
-export default function Home({ product }: HomeProps) {
+export default function Home({ product }: HomeProps): JSX.Element {
   return (
     <>
       <Head>
@@ -24,7 +21,12 @@ export default function Home({ product }: HomeProps) {
 
       <main className={styles.contentContainer}>
         <section className={styles.hero}>
-          <span>👏 Hey, Welcome</span>
+          <span>
+            <span role='img' aria-label='clapping'>
+              👏
+            </span>{' '}
+            Hey, Welcome
+          </span>
 
           <h1>
             News about the <span>React</span> world.
@@ -51,14 +53,14 @@ export const getStaticProps: GetStaticProps = async () => {
     priceId: price.id,
     amount: new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
-    }).format(price.unit_amount / 100),
+      currency: 'USD'
+    }).format(price.unit_amount / 100)
   };
 
   return {
     props: {
-      product,
+      product
     },
-    revalidate: 60 * 60 * 24, // 24 hours
+    revalidate: 60 * 60 * 24 // 24 hours
   };
 };

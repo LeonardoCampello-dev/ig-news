@@ -1,18 +1,16 @@
+import { query } from 'faunadb';
 import NextAuth from 'next-auth';
-import { session } from 'next-auth/client';
-
 import Providers from 'next-auth/providers';
 
 import { fauna } from '../../../services/fauna';
-import { query } from 'faunadb';
 
 export default NextAuth({
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      scope: 'read:user',
-    }),
+      scope: 'read:user'
+    })
     // ...add more providers here
   ],
   callbacks: {
@@ -38,24 +36,24 @@ export default NextAuth({
                   )
                 )
               ),
-              query.Match(query.Index('subscription_by_status'), 'active'),
+              query.Match(query.Index('subscription_by_status'), 'active')
             ])
           )
         );
 
         return {
           ...session,
-          activeSubscription: userActiveSubscription,
+          activeSubscription: userActiveSubscription
         };
       } catch {
         return {
           ...session,
-          activeSubscription: null,
+          activeSubscription: null
         };
       }
     },
 
-    async signIn(user, account, profile) {
+    async signIn(user) {
       const { email } = user;
 
       try {
@@ -67,9 +65,7 @@ export default NextAuth({
               )
             ),
             query.Create(query.Collection('users'), { data: { email } }),
-            query.Get(
-              query.Match(query.Index('user_by_email'), query.Casefold(email))
-            )
+            query.Get(query.Match(query.Index('user_by_email'), query.Casefold(email)))
           )
         );
 
@@ -77,6 +73,6 @@ export default NextAuth({
       } catch (error) {
         return false;
       }
-    },
-  },
+    }
+  }
 });

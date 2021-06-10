@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { mocked } from 'ts-jest/utils';
-
 import { useSession } from 'next-auth/client';
+import { mocked } from 'ts-jest/utils';
 
 import { SignInButton } from '.';
 
@@ -25,11 +24,11 @@ describe('🧪 Dado que estou no componente SignInButon', () => {
       {
         user: {
           name: 'LeonardoCampello-dev',
-          email: 'leonardocampello.dev@gmail.com',
+          email: 'leonardocampello.dev@gmail.com'
         },
-        expires: 'expires',
+        expires: 'expires'
       },
-      false,
+      false
     ]);
 
     render(<SignInButton />);

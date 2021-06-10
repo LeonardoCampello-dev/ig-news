@@ -1,10 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Readable } from 'stream';
-
 import Stripe from 'stripe';
 
 import { stripe } from '../../services/stripe';
-
 import { saveSubscription } from './_lib/manageSubscription';
 
 async function buffer(readable: Readable) {
@@ -19,14 +17,14 @@ async function buffer(readable: Readable) {
 
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 };
 
 const relevantEvents = new Set([
   'checkout.session.completed',
   'customer.subscription.updated',
-  'customer.subscription.deleted',
+  'customer.subscription.deleted'
 ]);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -40,11 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const { webhooks } = stripe;
 
-      event = webhooks.constructEvent(
-        buf,
-        secret,
-        process.env.STRIPE_WEBHOOK_SECRET
-      );
+      event = webhooks.constructEvent(buf, secret, process.env.STRIPE_WEBHOOK_SECRET);
     } catch (error) {
       return res.status(400).send(`Webhook error: ${error.message}`);
     }
@@ -55,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         switch (type) {
           case 'customer.subscription.updated':
-          case 'customer.subscription.deleted':
+          case 'customer.subscription.deleted': {
             const subscription = event.data.object as Stripe.Subscription;
 
             await saveSubscription(
@@ -65,8 +59,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             );
 
             break;
+          }
 
-          case 'checkout.session.completed':
+          case 'checkout.session.completed': {
             const { object } = event.data;
 
             const checkoutSession = object as Stripe.Checkout.Session;
@@ -78,9 +73,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             );
 
             break;
+          }
 
-          default:
+          default: {
             throw new Error('Unhandled event.');
+          }
         }
       } catch (error) {
         return res.json({ error: 'Webhook handler failed.' });
