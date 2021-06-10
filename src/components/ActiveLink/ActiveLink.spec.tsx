@@ -6,9 +6,9 @@ jest.mock('next/router', () => {
   return {
     useRouter() {
       return {
-        asPath: '/',
+        asPath: '/'
       };
-    },
+    }
   };
 });
 

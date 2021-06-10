@@ -1,8 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-
-import { signIn, useSession } from 'next-auth/client';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { useRouter } from 'next/router';
-
+import { signIn, useSession } from 'next-auth/client';
 import { mocked } from 'ts-jest/utils';
 
 import { SubscribeButton } from '.';
@@ -51,17 +49,17 @@ describe('🧪 Dado que estou no componente SignInButon', () => {
       {
         user: {
           name: 'LeonardoCampello-dev',
-          email: 'leonardocampello.dev@gmail.com',
+          email: 'leonardocampello.dev@gmail.com'
         },
         activeSubscription: 'active-subscription',
-        expires: 'expires',
+        expires: 'expires'
       },
-      false,
+      false
     ]);
 
     /** Mock para o router.push() do Next.js */
     useRouterMocked.mockReturnValueOnce({
-      push: pushMock,
+      push: pushMock
     } as any);
 
     render(<SubscribeButton />);
