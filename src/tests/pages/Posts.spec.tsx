@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
-
-import { getPrismicClient } from '../../services/prismic';
-
 import { mocked } from 'ts-jest/utils';
 
 import Posts, { getStaticProps, Post as IPost } from '../../pages/posts';
+import { getPrismicClient } from '../../services/prismic';
 
 jest.mock('../../services/prismic');
 

@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { getPrismicClient } from '../../../services/prismic';
 import styles from '../post.module.scss';
 
-interface PostPreviewProps {
+export interface PostPreviewProps {
   post: {
     slug: string;
     title: string;
@@ -28,7 +28,7 @@ export default function PostPreview({ post }: PostPreviewProps): JSX.Element {
     if (session?.activeSubscription) {
       router.push(`/posts/${slug}`);
     }
-  }, [session]);
+  }, [session, router, slug]);
 
   return (
     <>

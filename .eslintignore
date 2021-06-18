@@ -1,6 +1,4 @@
 node_modules
 .next
-tests/
 
-.spec.ts
-.spec.tsx
+*.spec.tsx

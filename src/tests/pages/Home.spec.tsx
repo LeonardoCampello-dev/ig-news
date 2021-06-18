@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
-
-import { stripe } from '../../services/stripe';
-
 import { mocked } from 'ts-jest/utils';
 
 import Home, { getStaticProps, HomeProps } from '../../pages';
+import { stripe } from '../../services/stripe';
 
 jest.mock('next-auth/client', () => {
   return {
