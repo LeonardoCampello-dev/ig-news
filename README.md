@@ -6,7 +6,7 @@
     >
 </h1>
 
-<h1 align="center"> Ig.news ☕ [🚧 WIP]</h1>
+<h1 align="center"> Ig.news ☕</h1>
 
 <h4 align="center">
 
@@ -31,7 +31,7 @@
 
 ## 👨‍🏫 About
 
-🚧 WIP
+Ig.news is a content subscription platform built using Jamstack (JavaScript, API & Markup)
 
 ## 🚀 Technology
 
@@ -44,6 +44,10 @@
 ### 📚 Libs
 
 - [NextAuth.js](https://next-auth.js.org/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Husky](https://www.npmjs.com/package/husky)
 
 ### 🔌 APIs
 
